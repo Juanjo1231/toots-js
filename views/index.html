@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>toots</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Hammersmith+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 push-m2">
+        <div class="section">
+          <div class="row">
+            <div class="col s12">
+              <h1 class="toots">
+                t<span>o</span>ots<span>.js</span>
+                <h6><a href="https://codepen.io/JuanjoVlado">By Juanjo Rivera</a></h6>
+              </h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <p>Presenting a bunch of different tools to make the creation and setting of elements easier and faster, so that you can focus in more complex tasks:</p>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="row">
+            <div class="col s12">
+              <h5 class="center-align">Loader</h5>
+              <div class="row">
+                <div class="col s4">
+                  <div id="loader_1" class="loaderCont"></div>
+                </div>
+                <div class="col s4">
+                  <div id="loader_2" class="loaderCont"></div>
+                </div>
+                <div class="col s4">
+                  <div id="loader_3" class="loaderCont"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+<pre class="toots-code javascript sbl">
+com://-- LOADER --//
+kw:let Loader op:= kw:require(str:'toots_loader')
+kw:let parent op:= kw:document.kw:getElementById(str:'parent_1')
+
+kw:let l1 op:= op:new Loader({
+  parent: parent,
+  animation: str:'wheel'
+})
+
+l1.kw:show()
+</pre>
+          </div>
+          <div class="section">
+            <div class="row">
+              <div class="col s12">
+                <h5 class="center-align">Pagination</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <div id="pagination_1"></div>
+              </div>
+              <div class="col s6">
+                <div id="pagination_2"></div>
+              </div>
+              <div id="page_tag" class="col s12 center-align">Page No.1</div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+<pre class="toots-code javascript sbl">
+com://-- PAGINATION --//
+kw:let Pagination op:= kw:require(str:'toots_pagination')
+kw:let pag1 op:= kw:document.kw:getElementById(str:'container')
+
+kw:function fn:updatePage(par:res){
+  kw:document.kw:getElementById(str:'page_tag')
+    .textContent op:= str:`PageNo.${par:res.page}`
+}
+
+kw:let p1 op:= op:new Pagination({
+  parent: pag1,
+  pages: num:12,
+  limit: num:5,
+  callback: updatePage com://Function to call on page change
+})
+</pre>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="row">
+              <div class="col s12">
+                <h5 class="center-align">Switch</h5>
+              </div>
+              <div class="col s8 push-s2">
+                <div id="switch_1"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+<pre class="toots-code javascript sbl">
+com://-- SWITCH --//
+kw:let TSwitch op:= kw:require(str:'toots_switch')
+kw:let container op:= kw:document.kw:getElementById(str:'switch_container')
+
+kw:let sw op:= op:new TSwitch({
+  parent: container,
+  options: [str:'Option 1', str:'Option 2']
+})
+</pre>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="row">
+              <div class="col s12">
+                <h5 class="center-align">Alert <span class="info">(Under construction)</span></h5>
+              </div>
+              <div class="col s4 push-s4">
+                <button id="alert_btn" class="waves-effect waves-light btn">Show alert</button>
+              </div>
+            </div>
+<pre class="toots-code javascript sbl">
+  com://-- ALERT --//
+  kw:let customAlert op:= kw:require(str:'customAlert')
+  kw:let btn = document.kw:getElementById(str:'alert_btn')
+
+  btn.fn:onclick op:= kw:function(){
+    kw:customAlert({
+      title: str:'Custom alert',
+      buttons: [str:'Accept', str:'Cancel'],
+      content: str:'Test content. Can be plain text or HTML nodes'
+    })
+  }
+</pre>
+          </div>
+          <div class="section">
+            <div class="row">
+              <div class="col s12">
+                <h5 class="center-align">Box Resize</h5>
+              </div>
+              <div class="col s4 push-s4">
+                <div id="boxResize_1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

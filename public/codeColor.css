@@ -1,0 +1,20 @@
+.javascript {
+  background-color: #272822;
+  color: #f8f8f2;
+  font-family: monospace, monospace;
+  padding: 1em 1.5em;
+  border-radius: 0.5em; }
+  .javascript .kw {
+    color: #66d9ef; }
+  .javascript .fn {
+    color: #a6e22e; }
+  .javascript .op {
+    color: #f92672; }
+  .javascript .num {
+    color: #ae81ff; }
+  .javascript .str {
+    color: #e6db74; }
+  .javascript .com {
+    color: #75715e; }
+  .javascript .par {
+    color: #fd971f; }

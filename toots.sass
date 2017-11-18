@@ -1,0 +1,424 @@
+@import "node_modules/materialize-css/sass/materialize.scss"
+
+$font: 'Roboto', sans-serif
+$basicBlue: #3f51b5
+$shadow_1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+$backgroundColor: rgba(96, 125, 139, 0.2)
+$whiteButtonHover: #607D8B
+$whiteButtonActive: #566a73
+$backgroundIndex: 1000
+$backgroundContIndex: 1001
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+=transform($transformation)
+  -webkit-transform: $transformation
+  -moz-transform:    $transformation
+  -ms-transform:     $transformation
+  transform:         $transformation
+
+.animated_element
+  animation-duration: 1s
+  animation-iteration-count: 1
+  animation-timing-function: ease
+
+html,
+body
+  height: 100%
+  margin: 0
+  padding: 0
+  font-family: $font
+
+.btn
+  width: 100%
+.info
+  color: #9e9e9e;
+  font-size: 0.5em;
+h1.toots
+  margin: 1em
+  text-align: center
+  margin-bottom: 0
+  font-family: 'Hammersmith One', sans-serif
+  span:first-child
+    color: yellow;
+  span:last-child
+    font-size: 0.4em;
+  + h6
+    text-align: center
+    margin-top: 0
+    a
+      color: #9e9e9e;
+    &:hover
+      text-decoration: underline;
+p
+  text-align: center
+
+.loaderCont
+  width: 10em
+  height: 10em
+  margin: 0 auto
+  box-shadow: $shadow_1
+  position: relative
+#loader_1
+  width: 5em
+#loader_3
+  height: 5em
+  margin-top: 50%
+  +transform( translateY(-100%) )
+/*--- TOAST ---*/
+#addToastBtn
+  width: 100%
+
+.tts-toast-container
+  position: fixed
+  display: flex
+  margin: 1em
+  z-index: 1000
+
+.tts-toast-container.new
+  .tts-toast
+    @extend .animated_element
+    animation-name: downAll
+
+.tts-toast-container.top
+  top: 0
+  flex-direction: column
+  .tts-toast
+    @extend .animated_element
+    animation-name: topDown
+
+.tts-toast-container.bottom
+  bottom: 0
+  flex-direction: column-reverse
+  .tts-toast
+    @extend .animated_element
+    animation-name: bottomUp
+
+.tts-toast-container.left
+  left: 0
+
+.tts-toast-container.right
+  right: 0
+
+.tts-toast-container.center
+  left: 50%
+  +transform( translateX(-50%) )
+
+.tts-toast
+  color: white
+  background-color: rgba(3, 3, 3, 0.8)
+  +border-radius(0.2em)
+  min-width: 10em
+  min-height: 1.5em
+  padding: 0.5em 1em
+  margin: 0.1em 0
+  text-align: center
+  transition: 1s
+
+.tts-toast.fadeOut
+  opacity: 0
+
+@keyframes downAll
+  from
+    +transform( translateY(0) )
+  to
+    +transform( translateY(100%) )
+
+@keyframes topDown
+  from
+    opacity: 0
+    +transform( translateY(-100%) )
+  to
+    opacity: 1
+    +transform( translateY(0) )
+
+@keyframes bottomUp
+  from
+    opacity: 0
+    +transform( translateY(100%) )
+  to
+    opacity: 1
+    +transform( translateY(0) )
+
+
+/*----------- LOADER ----------*/
+
+.tts-loader-background
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: $backgroundColor
+  .tts-loader-child
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+.tts-loader-child
+  .wheel
+    border: 5px solid transparent
+    border-top-color: $basicBlue
+    width: 2em
+    height: 2em
+    +border-radius(50%)
+    animation-name: fullRotate
+    animation-iteration-count: infinite
+    animation-timing-function: linear
+    animation-duration: 1s
+
+@keyframes fullRotate
+  from
+    +transform( rotate(0) )
+  to
+    +transform( rotate(360deg) )
+
+/*---------- SWITCHES ----------*/
+  /*--- Default ---*/
+.tts-switch-container.default
+  margin: 0.5em
+  display: flex
+  flex-direction: row
+  flex-wrap: nonwrap
+  user-select: none
+  cursor: pointer
+  *
+    flex-grow: 1
+  .tts-switch-option
+    background-color: transparent
+    text-align: center
+    position: relative
+    color: #ccc
+    transition: 0.3s
+    display: flex
+    flex-direction: column
+    justify-content: center
+  .tts-switch-rail
+    background-color: #ccc
+    border: 2px solid #aaa
+    border-radius: 100em
+    position: relative
+    .tts-switch
+      position: relative
+      height: 2em
+      width: 2em
+      background-color: #123456
+      border-radius: 50%
+      border: 0.1em solid #ccc
+      transition: 0.3s
+
+.tts-switch-container.default.f
+  .tts-switch-option:first-child
+    color: black
+    
+.tts-switch-container.default.l
+  .tts-switch-option:last-child
+    color: black
+  .tts-switch
+    margin-left: 100%
+    +transform(translateX(-100%))
+
+/*---------- ALERTS ----------*/
+/*-- Custom alert --*/
+
+.tts-alert-background
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: $backgroundColor
+  z-index: $backgroundIndex
+
+.tts-alert-body
+  width: 25em
+  background-color: white
+  position: absolute
+  border-radius: 0.5em
+  top: 50%
+  left: 50%
+  +transform( translate(-50%, -50%) )
+  max-height: 80%
+  z-index: $backgroundContIndex
+  .tts-alert-closeRow
+    border-radius: 0.5em 0.5em 0 0
+    padding: 0.5em 1em
+    text-align: right
+    border-bottom: 1px solid rgba(0,0,0,0.2)
+    *
+      display: inline-block
+      vertical-align: middle
+    h3
+      width: 90%
+      text-align: left
+      margin: 0
+      font-size: 1.3em
+    i
+      cursor: pointer
+    i:hover
+      color: red
+
+.tts-alert-contentBox
+  text-align: center
+  overflow: scroll
+  padding: 0.5em 1em
+
+.tts-alert-contentBox::-webkit-scrollbar 
+  width: 0.5em
+ 
+.tts-alert-contentBox::-webkit-scrollbar-track
+  background-color: transparent
+ 
+.tts-alert-contentBox::-webkit-scrollbar-thumb
+  background-color: $whiteButtonHover
+
+.tts-alert-btnRow
+  position: relative
+  text-align: right
+  border-radius: 0 0 0.5em 0.5em
+  border-top: 1px solid rgba(0,0,0,0.2)
+  padding: 0
+  display: flex
+  flex-direction: row-reverse
+  button
+    border: none
+    padding: 0.5em
+    cursor: pointer
+    background-color: white
+    font-size: 1em
+    margin: 0
+    border-color: rgba(0,0,0,0.2)
+    border-style: solid
+    border-width: 0
+    border-left-width: 2px
+    outline: none
+    min-width: 5em
+  button:hover
+    background-color: $whiteButtonHover
+    color: white
+    border-color: #607D8B
+  button:active
+    background-color: $whiteButtonActive
+    color: white
+    border-color: $whiteButtonActive
+
+//---------- PAGINATION ----------//
+.toots-pagination
+  display: flex
+  user-select: none
+  padding: 0.5em
+  justify-content: center
+  div.navBtn
+    padding: 0.25em 0.2em
+    color: #ccc
+    cursor: pointer
+    transition: 0.2s
+    &:hover
+      color: black
+      background-color: #ccc
+      border-radius: 50%
+    &:active
+      color: white
+    &.disabled
+      color: transparent
+      &:hover
+        background-color: transparent
+        cursor: default
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    text-align: center
+    display: flex
+    li
+      display: inline-block
+      width: 2em
+      padding: 0.5em 0
+      cursor: pointer
+      transition: 0.3s
+      &:hover
+        background-color: rgba(131, 191, 186, 0.32941176470588235)
+        color: black
+      &.active
+        background-color: #26a69a
+        color: white
+        border-radius: 50%
+  .page-detail
+    color: #666
+    font-size: 0.9em
+    align-self: flex-end
+
+    /* TOOTS COLORCODE */
+.toots-code
+  vertical-align: top
+  background-color: #272822
+  color: #f8f8f2
+  font-family: monospace, monospace
+  padding: 1em 1.5em
+  border-radius: 0.5em
+.javascript.sbl
+  .kw
+    color: #66d9ef
+  .fn
+    color: #a6e22e
+  .op
+    color: #f92672
+  .num
+    color: #ae81ff
+  .str
+    color: #e6db74
+  .com
+    color: #75715e
+  .par
+    color: #fd971f
+.javascript.codePen
+  .kw
+    color: #cac37e
+  .fn
+    color: #7396bd
+  .num
+    color: #d07529
+  .str
+    color: #8ea983
+  .com
+    color: #66625d
+  .par
+    color: #7396bd
+  .mtd
+    color: #9a828e
+
+//-- RESIZE --//
+.toots-resize
+  background-color: white /* USER STYLE */
+  box-shadow: $shadow_1
+  min-width: 10em
+  min-height: 10em
+  display: inline-block
+  position: relative
+  vertical-align: top
+  .resizeBar
+    background-color: transparent
+    position: absolute
+    /*background-color: black*/
+  .vertical
+    width: 100%
+    height: 0.5em
+    bottom: 0
+    cursor: row-resize
+  .horizontal
+    width: 0.5em
+    height: 100%
+    right: 0
+    cursor: col-resize
+  .corner
+    width: 1em
+    height: 1em
+    bottom: 0
+    right: 0
+    cursor: nw-resize
+    border-radius: 1em 0 0 0
